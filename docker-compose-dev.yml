@@ -24,8 +24,27 @@ services:
         volumes:
             - .:/app
             - static_volume:/app/backend/server/django_static
+        environment:
+            - DB_HOST=${DB_HOST}
+            - DB_NAME=${DB_NAME}
+            - DB_USER=${DB_USER}
+            - DB_PASS=${DB_PASS}
+            - SECRET_KEY=${SECRET_KEY}
+            - DEBUG=${DEBUG}
+            - ALLOWED_HOSTS=${ALLOWED_HOSTS}
         expose:
-            - 8000        
+            - 8000
+    db:
+        build:
+            context: ./docker/db
+            dockerfile: Dockerfile
+        volumes:
+            - ./var/pgdata:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_HOST=${DB_HOST}        
+            - POSTGRES_DB=${DB_NAME}
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASS}             
 
 volumes:
     static_volume: {}
