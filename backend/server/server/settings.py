@@ -47,12 +47,14 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework',
     'rest_framework.authtoken',
+    'widget_tweaks',
     'djoser',
     'corsheaders',
     'apps.accounts',
     'apps.notes',
 
     'core',
+    'wopr',
 ]
 
 #configure DRF
@@ -88,8 +90,11 @@ if not DEBUG:
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://0.0.0.0:8000",
+    "http://0.0.0.0:90",
+    "http://35.167.63.235"
 ]
 
 MIDDLEWARE = [
